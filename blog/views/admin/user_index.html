@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/bootstrap-theme.min.css">
+    <script src="/public/js/jquery-1.12.4.min.js"></script>
+    <script src="/public/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<ol class="breadcrumb">
+    <li><a href="/">管理首页</a></li>
+    <li><span>用户列表</span></li>
+</ol>
+
+<h3>用户列表</h3>
+
+{%include 'page.html'%}
+
+<table class="table table-striped">
+
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>密码</th>
+        <th>是否是管理员</th>
+    </tr>
+
+    {% for user in users %}
+        <tr>
+            <td>{{user._id.toString()}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.password}}</td>
+            <td>
+                {% if user.isAdmin %}
+                是
+                {% endif %}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{%include 'page.html'%}
+
+{% endblock %}
+</body>
+</html>
